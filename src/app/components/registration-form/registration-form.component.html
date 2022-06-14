@@ -1,0 +1,124 @@
+<div class="card">
+  <div class="card-header">Registruoti automobilį</div>
+  <div class="card-body">
+    <form (ngSubmit)="registrationSubmit(f)" #f="ngForm">
+      <div class="mb-3">
+        <label class="form-label">Vaiko vardas</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="name"
+          id=""
+          required
+          minlength="3"
+          maxlength="15"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Vaiko pavarde</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="surname"
+          id=""
+          required
+          minlength="3"
+          maxlength="15"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Vaiko gimimo metai</label>
+        <input
+          type="number"
+          class="form-control"
+          ngModel
+          name="year"
+          id=""
+          required
+          min="1500"
+          max="2022"
+          #inputYear="ngModel"
+        />
+        <!-- <span class="help-block" *ngIf="!inputYear.valid && inputYear.touched"
+          >Automobilio gamybos metai turi buti tarp 1500 ir 2022</span
+        > -->
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Vaiko lytis:</label>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            ngModel
+            name="gender"
+            value="male"
+            id="flexRadioDefault1"
+            required
+          />
+          <label class="form-check-label" for="flexRadioDefault1">
+            Berniukas
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="radio"
+            ngModel
+            name="gender"
+            value="female"
+            id="flexRadioDefault1"
+            required
+          />
+          <label class="form-check-label" for="flexRadioDefault2">
+            Mergaite
+          </label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">El. paštas</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="email"
+          id=""
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Telefonas</label>
+        <input
+          type="text"
+          class="form-control"
+          ngModel
+          name="phone"
+          id=""
+          required
+          placeholder="+370XXXXXXXX"
+          minlength="10"
+          maxLength="12"
+        />
+      </div>
+      <div class="mb-3">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          type="text"
+          ngModel
+          name="class"
+          id=""
+          required
+        >
+          <option *ngFor="let in of counter(8); let i = index" selected>
+            {{ i + 5 }}
+          </option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!f.valid">
+        Registruoti vaiką.
+      </button>
+    </form>
+  </div>
+</div>
