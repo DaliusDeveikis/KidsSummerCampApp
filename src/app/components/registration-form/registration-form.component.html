@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">Registruoti automobilį</div>
+  <div class="card-header">Registruoti vaiką vasaros gamtininkų stovyklai</div>
   <div class="card-body">
     <form (ngSubmit)="registrationSubmit(f)" #f="ngForm">
       <div class="mb-3">
@@ -41,9 +41,6 @@
           max="2022"
           #inputYear="ngModel"
         />
-        <!-- <span class="help-block" *ngIf="!inputYear.valid && inputYear.touched"
-          >Automobilio gamybos metai turi buti tarp 1500 ir 2022</span
-        > -->
       </div>
       <div class="mb-3">
         <label class="form-label">Vaiko lytis:</label>
@@ -85,6 +82,7 @@
           name="email"
           id=""
           required
+          appEmailValidator
         />
       </div>
       <div class="mb-3">
@@ -107,7 +105,7 @@
           aria-label="Default select example"
           type="text"
           ngModel
-          name="class"
+          name="clas"
           id=""
           required
         >
