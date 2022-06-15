@@ -1,4 +1,5 @@
 export class Registration {
+  public id:string|null = null
   constructor (
     public name:string,
     public surname:string,

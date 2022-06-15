@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import  {Registration } from '../models/registration'
 
 @Injectable({
@@ -13,5 +14,17 @@ export class RegistrationService {
 
   public addRegistration(registration:Registration) {
     return this.http.post(this.url + "registration.json", registration)
+  }
+
+  public getRegistrations() {
+    return this.http.get<{[key:string]:Registration}>(this.url + "registration.json").pipe(
+      map(response => {
+        let result: Registration[] = []
+        for(let key in response) {
+          result.push({...response[key], id: key})
+        }
+        return result
+      })
+    )
   }
 }
