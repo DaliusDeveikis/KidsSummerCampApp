@@ -9,12 +9,15 @@ import { EmailValidatorDirective } from './directive/email-validator.directive';
 import { RegistrationListComponent } from './components/registration-list/registration-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationUpdateComponent } from './components/registration-update/registration-update.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { PasswordValidatorDirective } from './directive/password-validator.directive';
 
 
 const routes:Routes = [
   {path: '', component: RegistrationListComponent},
   {path: 'new', component: RegistrationFormComponent},
-  {path: 'edit/:id', component: RegistrationUpdateComponent}
+  {path: 'edit/:id', component: RegistrationUpdateComponent},
+  {path: 'register', component: AuthComponent},
 ]
 
 @NgModule({
@@ -23,7 +26,9 @@ const routes:Routes = [
     RegistrationFormComponent,
     EmailValidatorDirective,
     RegistrationListComponent,
-    RegistrationUpdateComponent
+    RegistrationUpdateComponent,
+    AuthComponent,
+    PasswordValidatorDirective
   ],
   imports: [
     BrowserModule,
