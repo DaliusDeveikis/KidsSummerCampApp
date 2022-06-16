@@ -1,7 +1,7 @@
 <div class="card">
-  <div class="card-header">Registruoti vaiką vasaros gamtininkų stovyklai</div>
+  <div class="card-header">Redaguoti vaiką vasaros gamtininkų stovyklai</div>
   <div class="card-body">
-    <form (ngSubmit)="registrationSubmit(f)" #f="ngForm">
+    <form (ngSubmit)="onUpdate()" #f="ngForm">
       <div class="mb-3">
         <label class="form-label">Vaiko vardas</label>
         <input
@@ -13,6 +13,7 @@
           required
           minlength="3"
           maxlength="15"
+          [(ngModel)]="registration.name"
         />
       </div>
       <div class="mb-3">
@@ -26,6 +27,7 @@
           required
           minlength="3"
           maxlength="15"
+          [(ngModel)]="registration.surname"
         />
       </div>
       <div class="mb-3">
@@ -40,6 +42,7 @@
           min="1500"
           max="2022"
           #inputYear="ngModel"
+          [(ngModel)]="registration.year"
         />
       </div>
       <div class="mb-3">
@@ -53,6 +56,7 @@
             value="male"
             id="flexRadioDefault1"
             required
+            [(ngModel)]="registration.gender"
           />
           <label class="form-check-label" for="flexRadioDefault1">
             Berniukas
@@ -67,6 +71,7 @@
             value="female"
             id="flexRadioDefault1"
             required
+            [(ngModel)]="registration.gender"
           />
           <label class="form-check-label" for="flexRadioDefault2">
             Mergaite
@@ -83,6 +88,7 @@
           id=""
           required
           appEmailValidator
+          [(ngModel)]="registration.email"
         />
       </div>
       <div class="mb-3">
@@ -97,6 +103,7 @@
           placeholder="+370XXXXXXXX"
           minlength="10"
           maxLength="12"
+          [(ngModel)]="registration.phone"
         />
       </div>
       <div class="mb-3">
@@ -108,15 +115,23 @@
           name="clas"
           id=""
           required
+          [(ngModel)]="registration.clas"
         >
           <option *ngFor="let in of counter(8); let i = index" selected>
             {{ i + 5 }}
           </option>
         </select>
       </div>
+      <div class="alert alert-success alert-dismissible" *ngIf="f.submitted">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close"
+          >&times;</a
+        >
+        <strong>Sveikiname!</strong> Redagavimas pavyko
+      </div>
       <button type="submit" class="btn btn-success" [disabled]="!f.valid">
-        Registruoti vaiką.
+        Išsaugoti pakeitimus
       </button>
+      <a routerLink="" class="btn btn-success float-end">Atšaukti</a>
     </form>
   </div>
 </div>

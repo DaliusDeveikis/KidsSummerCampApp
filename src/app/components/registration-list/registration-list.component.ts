@@ -14,11 +14,24 @@ export class RegistrationListComponent implements OnInit {
   constructor(
     private registrationService: RegistrationService
     ) { }
-
-  ngOnInit(): void {
+  
+  private loadRegistrations() {
     this.registrationService.getRegistrations().subscribe((result)=> {
       this.registrations = result
     });
+  }
+
+  ngOnInit(): void {
+    this.loadRegistrations()
+  }
+
+  public onDeleteRegistration(id:string|null){
+    if (id != null) {
+      this.registrationService.deleteRegistration(id).subscribe(()=> {
+        this.loadRegistrations()
+      })
+    }
+    
   }
 
 }

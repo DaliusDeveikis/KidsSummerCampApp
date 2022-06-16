@@ -11,6 +11,7 @@
           <th>E-paštas</th>
           <th>Tel. nr.</th>
           <th>Klasė</th>
+          <th>Veiksmai:</th>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +23,24 @@
           <td>{{ registration.email }}</td>
           <td>{{ registration.phone }}</td>
           <td>{{ registration.clas }}</td>
+          <td>
+            <a
+              [routerLink]="['/edit', registration.id]"
+              class="btn btn-info me-3"
+              >Redaguoti</a
+            >
+            <button
+              class="btn btn-danger"
+              (click)="onDeleteRegistration(registration.id)"
+            >
+              Ištrinti
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
+    <!-- <div class="alert alert-success alert-dismissible" *ngIf="registrations">
+      <strong>Sveikiname!</strong> Registracija pavyko
+    </div> -->
   </div>
 </div>
