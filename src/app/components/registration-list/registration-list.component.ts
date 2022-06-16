@@ -10,6 +10,7 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationListComponent implements OnInit {
 
   public registrations: Registration[] = []
+  public display:string = '';
 
   constructor(
     private registrationService: RegistrationService
@@ -33,5 +34,13 @@ export class RegistrationListComponent implements OnInit {
     }
     
   }
+
+  public openModal(){
+    this.display='block';
+ }
+
+  public onClose(){
+    this.display='none';
+ }
 
 }
