@@ -29,52 +29,52 @@
               class="btn btn-info me-3"
               >Redaguoti</a
             >
-            <button class="btn btn-danger" (click)="openModal()">
+            <button class="btn btn-danger" (click)="openModal(registration)">
               Ištrinti
             </button>
           </td>
-          <div class="modal" tabindex="-1" [ngStyle]="{ display: display }">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Vaiko ištrinimas</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    (click)="onClose()"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <p>
-                    Ar norite ištrinti vaiką {{ registration.name }}
-                    {{ registration.surname }} ?
-                  </p>
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-warning"
-                    data-bs-dismiss="modal"
-                    (click)="onClose()"
-                  >
-                    Atšaukti
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger"
-                    (click)="onDeleteRegistration(registration.id)"
-                  >
-                    Ištrinti
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </tr>
       </tbody>
     </table>
+
+    <div class="modal" tabindex="-1" [ngStyle]="{ display: display }">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Vaiko ištrinimas</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="onClose()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>
+              Ar norite ištrinti vaiką {{ person.name }} {{ person.surname }} ?
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-bs-dismiss="modal"
+              (click)="onClose()"
+            >
+              Atšaukti
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onDeleteRegistration(person.id)"
+            >
+              Ištrinti
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- <div class="alert alert-success alert-dismissible" *ngIf="registrations">
       <strong>Sveikiname!</strong> Registracija pavyko

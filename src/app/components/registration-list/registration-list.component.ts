@@ -11,6 +11,7 @@ export class RegistrationListComponent implements OnInit {
 
   public registrations: Registration[] = []
   public display:string = '';
+  public person:Registration = new Registration
 
   constructor(
     private registrationService: RegistrationService
@@ -30,17 +31,24 @@ export class RegistrationListComponent implements OnInit {
     if (id != null) {
       this.registrationService.deleteRegistration(id).subscribe(()=> {
         this.loadRegistrations()
+        this.display='none';
       })
     }
     
   }
 
-  public openModal(){
-    this.display='block';
+  public openModal(person: Registration){
+    if (person != null) {
+      this.person = person;
+      this.display='block';
+    }
+      
+      
+    
  }
 
   public onClose(){
-    this.display='none';
+      this.display='none';
  }
 
 }
