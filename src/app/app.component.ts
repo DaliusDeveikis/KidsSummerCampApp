@@ -16,12 +16,22 @@ export class AppComponent {
 
   
   constructor(private auth: AuthService) {
-    auth.autoLogin()
-    this.login = auth.logedIn
-    if (auth.user != null) {
-      this.user = auth.user
+    this.onLogin()
+  }
+
+  public onLogin() {
+    this.auth.autoLogin()
+    this.login = true
+    if (this.auth.user != null) {
+      this.user = this.auth.user
+    } else {
+      this.onLogout()
     }
-    
+  }
+
+  public onLogout() {
+    this.auth.logout();
+    this.login = false
   }
 
 }

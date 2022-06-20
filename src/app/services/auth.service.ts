@@ -44,4 +44,10 @@ export class AuthService {
       this.user= JSON.parse(data)
     }
   }
+
+  public logout() {
+    this.logedIn = false
+    return localStorage.removeItem('user')
+  }
+
 }
