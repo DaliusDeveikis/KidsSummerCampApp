@@ -13,6 +13,7 @@ export class NavigationComponent implements OnInit {
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
+    this.authService.autoLogin()
     this.user=this.authService.user;
     this.authService.userUpdated.subscribe(()=>{
       this.user=this.authService.user;
