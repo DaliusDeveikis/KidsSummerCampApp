@@ -11,6 +11,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrationUpdateComponent } from './components/registration-update/registration-update.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { PasswordValidatorDirective } from './directive/password-validator.directive';
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const routes:Routes = [
@@ -29,7 +31,9 @@ const routes:Routes = [
     RegistrationListComponent,
     RegistrationUpdateComponent,
     AuthComponent,
-    PasswordValidatorDirective
+    PasswordValidatorDirective,
+    NavigationComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

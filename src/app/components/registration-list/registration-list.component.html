@@ -11,7 +11,7 @@
           <th>E-paštas</th>
           <th>Tel. nr.</th>
           <th>Klasė</th>
-          <th>Veiksmai:</th>
+          <th *ngIf="user != null">Veiksmai:</th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +23,7 @@
           <td>{{ registration.email }}</td>
           <td>{{ registration.phone }}</td>
           <td>{{ registration.clas }}</td>
-          <td>
+          <td *ngIf="user != null">
             <a
               [routerLink]="['/edit', registration.id]"
               class="btn btn-info me-3"

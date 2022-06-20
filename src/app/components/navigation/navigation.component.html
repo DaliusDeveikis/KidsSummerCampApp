@@ -1,0 +1,25 @@
+<div class="col-md-12 mb-3">
+  <a class="btn btn-success me-3" routerLink="/new">Vaiko registracija</a>
+  <a class="btn btn-success me-3" routerLink="/">Vaiku sarasas</a>
+  <span class="label label-success mr-3 float-end" *ngIf="user != null"
+    >Jus esate prisijunges kaip : {{ user?.email }}</span
+  >
+  <a
+    class="btn btn-success me-3 float-end"
+    *ngIf="user == null"
+    routerLink="/register"
+    >Registracija</a
+  >
+  <a
+    class="btn btn-success me-3 float-end mr-3"
+    *ngIf="user == null"
+    routerLink="/login"
+    >Login</a
+  >
+  <a
+    class="btn btn-danger btn-sm me-3 float-end mr-3"
+    (click)="onLogout()"
+    *ngIf="user != null"
+    >Logout</a
+  >
+</div>

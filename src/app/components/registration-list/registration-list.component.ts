@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Registration } from 'src/app/models/registration';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,6 +20,7 @@ export class RegistrationListComponent implements OnInit {
   constructor(
     private registrationService: RegistrationService,
     private auth: AuthService,
+    private title: Title
     ) { }
   
   private loadRegistrations() {
@@ -30,6 +32,10 @@ export class RegistrationListComponent implements OnInit {
   ngOnInit(): void {
     this.loadRegistrations()
     this.user = this.auth.user
+    this.title.setTitle('Registracijų sąrašas')
+    this.auth.userUpdated.subscribe(()=> {
+      this.user = this.auth.user
+    })
   }
 
   public onDeleteRegistration(id:string|null){
