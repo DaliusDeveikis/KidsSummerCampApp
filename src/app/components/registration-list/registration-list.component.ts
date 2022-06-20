@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Registration } from 'src/app/models/registration';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -12,9 +14,11 @@ export class RegistrationListComponent implements OnInit {
   public registrations: Registration[] = []
   public display:string = '';
   public person:Registration = new Registration
+  public user: User|null = null
 
   constructor(
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private auth: AuthService,
     ) { }
   
   private loadRegistrations() {
@@ -25,6 +29,7 @@ export class RegistrationListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRegistrations()
+    this.user = this.auth.user
   }
 
   public onDeleteRegistration(id:string|null){

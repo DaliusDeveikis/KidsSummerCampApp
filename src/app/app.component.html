@@ -3,10 +3,19 @@
     <div class="col-md-12 mb-3">
       <a class="btn btn-success me-3" routerLink="/new">Vaiko registracija</a>
       <a class="btn btn-success me-3" routerLink="/">Vaiku sarasas</a>
-      <a class="btn btn-success me-3 float-end" routerLink="/register"
+      <span class="label label-success float-end" *ngIf="!login"
+        >Jus esate prisijunges kaip : {{ user?.email }}</span
+      >
+      <a
+        class="btn btn-success me-3 float-end"
+        *ngIf="login"
+        routerLink="/register"
         >Registracija</a
       >
-      <a class="btn btn-success me-3 float-end mr-3" routerLink="/login"
+      <a
+        class="btn btn-success me-3 float-end mr-3"
+        *ngIf="login"
+        routerLink="/login"
         >Login</a
       >
     </div>

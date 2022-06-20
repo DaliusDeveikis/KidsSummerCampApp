@@ -18,7 +18,7 @@ export class AuthComponent implements OnInit {
   public passwordsMatch: boolean = false
   public urlRegister: boolean = true
   public location: string = ''
-  public logedIn: boolean = false
+  public logedIn: boolean = true
 
   constructor(
     private auth: AuthService,
@@ -39,64 +39,66 @@ export class AuthComponent implements OnInit {
   }
 
   public onSubmit(form:NgForm) {
-    if (form.value.password === form.value.password1) {
-      this.auth.register(form.value.email,form.value.password).subscribe({
+    if (this.logedIn) {
+      this.auth.signInWithEmailAndPassword(form.value.email,form.value.password).subscribe({
         next: (response) => {
+          this.router.navigate(['/']);
+          this.logedIn = true;
           console.log(response)
-            this.passwordsMatch = true
-            this.error = 'Registracija sekmingai pavyko!'.toUpperCase()
-            this.alert = this.successColor
-          
-        }, error:(response) => {
-          console.log(response)
+        }, error: (response) => {
           switch (response.error.error.message) {
-            case "EMAIL_EXISTS":
-              this.error = "toks email egzistuoja".toUpperCase()
+            case "INVALID_PASSWORD": 
+              this.error = 'Netinkamas slaptažodis'.toUpperCase()
               this.alert = this.errorColor
               break;
-            case "INVALID_EMAIL":
-              this.error = "blogas email formatas".toUpperCase()
+            case "EMAIL_NOT_FOUND": 
+              this.error = 'toks email neegzistuoja'.toUpperCase()
               this.alert = this.errorColor
               break;
-            case "TOO_MANY_ATTEMPTS_TRY_LATER":
-              this.error = "per didelis kiekis bandymu registruoti".toUpperCase()
+            case "USER_DISABLED": 
+              this.error = 'vartotojas užblokuotas'.toUpperCase()
               this.alert = this.errorColor
               break;
-            
           }
         }
         
       })
-    } else {  
-      this.error = 'Nesutampa slaptažodžiai'.toUpperCase()
-      this.alert = this.errorColor
+    } else {
+      if (form.value.password === form.value.password1) {
+        this.auth.register(form.value.email,form.value.password).subscribe({
+          next: (response) => {
+            console.log(response)
+              this.passwordsMatch = true
+              this.error = 'Registracija sekmingai pavyko!'.toUpperCase()
+              this.alert = this.successColor
+            
+          }, error:(response) => {
+            console.log(response)
+            switch (response.error.error.message) {
+              case "EMAIL_EXISTS":
+                this.error = "toks email egzistuoja".toUpperCase()
+                this.alert = this.errorColor
+                break;
+              case "INVALID_EMAIL":
+                this.error = "blogas email formatas".toUpperCase()
+                this.alert = this.errorColor
+                break;
+              case "TOO_MANY_ATTEMPTS_TRY_LATER":
+                this.error = "per didelis kiekis bandymu registruoti".toUpperCase()
+                this.alert = this.errorColor
+                break;
+              
+            }
+          }
+          
+        })
+      } else {  
+        this.error = 'Nesutampa slaptažodžiai'.toUpperCase()
+        this.alert = this.errorColor
+      }
     }
-   
+    
   }
 
-  public onLogin(form:NgForm) {
-    this.auth.signInWithEmailAndPassword(form.value.email,form.value.password).subscribe({
-      next: (response) => {
-        this.router.navigate(['/']);
-        this.logedIn = true;
-      }, error: (response) => {
-        switch (response.error.error.message) {
-          case "INVALID_PASSWORD": 
-            this.error = 'Netinkamas slaptažodis'.toUpperCase()
-            this.alert = this.errorColor
-            break;
-          case "EMAIL_NOT_FOUND": 
-            this.error = 'toks email neegzistuoja'.toUpperCase()
-            this.alert = this.errorColor
-            break;
-          case "USER_DISABLED": 
-            this.error = 'vartotojas užblokuotas'.toUpperCase()
-            this.alert = this.errorColor
-            break;
-        }
-      }
-      
-    })
-  }
 
 }
