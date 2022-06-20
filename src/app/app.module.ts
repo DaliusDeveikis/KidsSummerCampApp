@@ -18,6 +18,7 @@ const routes:Routes = [
   {path: 'new', component: RegistrationFormComponent},
   {path: 'edit/:id', component: RegistrationUpdateComponent},
   {path: 'register', component: AuthComponent},
+  {path: 'login', component: AuthComponent},
 ]
 
 @NgModule({

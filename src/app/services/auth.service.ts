@@ -18,4 +18,12 @@ export class AuthService {
       returnSecureToken:true
     })
   }
+
+  public signInWithEmailAndPassword(email:string, password:string) {
+    return this.http.post(this.url + ':signInWithPassword?key=' + this.key, {
+      email:email,
+      password:password,
+      returnSecureToken:true
+    })
+  }
 }

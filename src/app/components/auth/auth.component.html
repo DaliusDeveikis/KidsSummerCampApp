@@ -1,11 +1,21 @@
 <div class="row">
   <div class="col-md-6 offset-md-3 col-xs-12 mt-3">
-    <div class="card">
+    <div class="card" *ngIf="urlRegister">
       <div class="card-header">Registracija</div>
       <div class="card-body">
+        <div
+          class="alert text-center opacity-75"
+          role="alert"
+          [ngStyle]="{ background: alert }"
+          *ngIf="error != ''"
+        >
+          <small
+            ><em>{{ error }}</em></small
+          >
+        </div>
         <form (ngSubmit)="onSubmit(f)" #f="ngForm">
           <div class="mb-3">
-            <label for="" class="form-label">El pastas</label>
+            <label for="" class="form-label">El paštas</label>
             <input
               type="text"
               class="form-control"
@@ -16,37 +26,72 @@
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Slaptazodis</label>
+            <label for="" class="form-label">Naujas slaptažodis</label>
             <input
               type="text"
               class="form-control"
               ngModel
               name="password"
-              minlength="6"
-              #password
               required
               appPasswordValidator
             />
           </div>
           <div class="mb-3">
-            <label for="" class="form-label">Slaptazodis</label>
+            <label for="" class="form-label">Pakartoti slaptažodį</label>
             <input
               type="text"
               class="form-control"
               ngModel
               name="password1"
-              minlength="6"
-              #password1
               required
               appPasswordValidator
             />
           </div>
-          <button
-            type="submit"
-            class="btn btn-info"
-            [disabled]="password.value != password1.value || !f.valid"
+          <button type="submit" class="btn btn-info" [disabled]="!f.valid">
+            Registruoti
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card" *ngIf="!urlRegister">
+      <div class="card-header">Prisijungimas</div>
+      <div class="card-body">
+        <div
+          class="alert text-center opacity-75"
+          role="alert"
+          [ngStyle]="{ background: alert }"
+          *ngIf="error != ''"
+        >
+          <small
+            ><em>{{ error }}</em></small
           >
-            Registruotis
+        </div>
+        <form (ngSubmit)="onLogin(f)" #f="ngForm">
+          <div class="mb-3">
+            <label for="" class="form-label">El paštas</label>
+            <input
+              type="text"
+              class="form-control"
+              ngModel
+              name="email"
+              appEmailValidator
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="" class="form-label">Slaptažodis</label>
+            <input
+              type="text"
+              class="form-control"
+              ngModel
+              name="password"
+              required
+              appPasswordValidator
+            />
+          </div>
+          <button type="submit" class="btn btn-info" [disabled]="!f.valid">
+            Prisijungti
           </button>
         </form>
       </div>
