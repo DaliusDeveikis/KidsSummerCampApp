@@ -55,7 +55,7 @@ export class AuthService {
       idToken: this.user?.idToken,
       password:newpassword,
       returnSecureToken:true
-    }).pipe(tap(this.successLoginFun));;
+    })
   }
 
 }
