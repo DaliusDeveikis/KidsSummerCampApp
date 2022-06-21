@@ -8,7 +8,7 @@ import { User } from '../models/user';
 })
 export class AuthService {
 
-  private readonly key="AIzaSyBMjK9X-IscBCfHyVdG4BGeG06d9WP25ao";
+  private readonly key="AIzaSyAdZMX0VZqkSatLGZe_X9YytQQETh-cxWM";
   private readonly url="https://identitytoolkit.googleapis.com/v1/accounts";
 
   public user:User|null=null;
